@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Linnworks.Client\Linnworks.Client.csproj">
+      <Project>{42858746-1123-4D89-BEAC-B422DD127909}</Project>
+      <Name>Linnworks.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Linnworks.Contract\Linnworks.Contract.csproj">
+      <Project>{07FF3728-7BD2-4FDA-864B-BA6A2A4B422C}</Project>
+      <Name>Linnworks.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

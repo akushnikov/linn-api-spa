@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Linnworks.Contract\Linnworks.Contract.csproj">
+      <Project>{07FF3728-7BD2-4FDA-864B-BA6A2A4B422C}</Project>
+      <Name>Linnworks.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1-beta1" />
+  </ItemGroup>
+</Project>
