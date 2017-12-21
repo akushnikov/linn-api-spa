@@ -17,7 +17,8 @@ import {
   MatListModule,
   MatTableModule,
   MatSortModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import {LayoutModule} from '@angular/cdk/layout';
@@ -71,6 +72,7 @@ import {AuthGuard} from "./guards/auth.guard";
     MatTableModule,
     MatSortModule,
     MatDialogModule,
+    MatProgressBarModule,
 
     LayoutModule
   ],
