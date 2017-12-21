@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {FormControl, Validators} from '@angular/forms';
 import {AuthService} from "../../services";
 import {Router} from "@angular/router";
+import "rxjs/add/operator/finally";
 
 @Component({
   selector: 'linn-login',
@@ -27,12 +28,11 @@ export class LoginComponent {
   checkToken() {
     this.loading = true;
     this.authService.validate(this.token.value)
+      .finally(() => this.loading = false)
       .subscribe(ok => {
         this.router.navigate(['categories']);
       }, err => {
         this.token.setErrors({"token": true});
-      }, () => {
-        this.loading = false;
       });
   }
 }

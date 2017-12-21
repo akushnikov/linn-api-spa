@@ -33,10 +33,7 @@ namespace Linnworks.SPA
                 })
                 .AddCustomAuth(options => { });
             
-            services.AddMvc(options =>
-                {
-                    options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
-                })
+            services.AddMvc()
                 .AddApplicationPart(typeof(ApiController).Assembly)
                 .AddJsonOptions(opts =>
                 {

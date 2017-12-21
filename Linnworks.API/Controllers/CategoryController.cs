@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Linnworks.API.Base;
+using Linnworks.Client.Exceptions;
 using Linnworks.Client.Interfaces;
 using Linnworks.Contract.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -40,16 +41,16 @@ GROUP BY P.CategoryId";
             var (categories, custom) = (categoryTask.Result, customQueryTask.Result);
 
             var entities = (from cat in categories
-                            join cust in custom.Results
-                                on cat.Id equals cust.CategoryId
-                                into customSet
-                            from cust in customSet.DefaultIfEmpty()
-                            select new JoinedCategory
-                            {
-                                Id = cat.Id,
-                                Name = cat.Name,
-                                Count = cust?.Count ?? 0
-                            }).ToList();
+                join cust in custom.Results
+                    on cat.Id equals cust.CategoryId
+                    into customSet
+                from cust in customSet.DefaultIfEmpty()
+                select new JoinedCategory
+                {
+                    Id = cat.Id,
+                    Name = cat.Name,
+                    Count = cust?.Count ?? 0
+                }).ToList();
 
             return Ok(new
             {
@@ -73,26 +74,47 @@ GROUP BY P.CategoryId";
         [HttpPost]
         public async Task<IActionResult> Post(string name)
         {
-            var category = await ApiClient.CreateCategoryAsync(name);
-            return Ok(new
+            try
             {
-                success = true,
-                data = category
-            });
+                var category = await ApiClient.CreateCategoryAsync(name);
+                return Ok(new
+                {
+                    success = true,
+                    data = category
+                });
+            }
+            catch (Exception e)
+            {
+                return HandleApiException(e);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> Put(Category category)
         {
-            await ApiClient.UpdateCategoryAsync(category);
-            return Ok(new {success = true});
+            try
+            {
+                await ApiClient.UpdateCategoryAsync(category);
+                return Ok(new {success = true});
+            }
+            catch (Exception e)
+            {
+                return HandleApiException(e);
+            }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await ApiClient.DeleteCategoryAsync(id);
-            return Ok(new {success = true});
+            try
+            {
+                await ApiClient.DeleteCategoryAsync(id);
+                return Ok(new {success = true});
+            }
+            catch (Exception e)
+            {
+                return HandleApiException(e);
+            }
         }
     }
 }

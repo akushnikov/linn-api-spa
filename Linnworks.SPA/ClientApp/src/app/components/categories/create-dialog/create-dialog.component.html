@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Create</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Category name" [formControl]="categoryName" required>
+    <mat-error *ngIf="categoryName.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>
+    <span *ngIf="loading"><mat-spinner class="spinner" [diameter]="26"></mat-spinner></span>
+    <span *ngIf="!loading">Cancel</span>
+  </button>
+  <button mat-raised-button cdkFocusInitial color="primary" (click)="create(categoryName.value)" [disabled]="!categoryName.valid || loading">
+    <span *ngIf="loading"><mat-spinner class="spinner" [diameter]="26"></mat-spinner></span>
+    <span *ngIf="!loading">OK</span>
+  </button>
+</mat-dialog-actions>

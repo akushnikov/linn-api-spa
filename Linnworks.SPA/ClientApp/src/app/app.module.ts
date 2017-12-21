@@ -16,7 +16,8 @@ import {
   MatSidenavModule,
   MatListModule,
   MatTableModule,
-  MatSortModule
+  MatSortModule,
+  MatDialogModule
 } from '@angular/material';
 
 import {LayoutModule} from '@angular/cdk/layout';
@@ -26,7 +27,12 @@ import {AuthService, CategoryService} from "./services";
 
 import {PublicComponent, SecuredComponent} from "./components/layout";
 import {AuthInterceptor, NoCacheInterceptor} from "./interceptors";
-import {LoginComponent, CategoriesComponent} from "./components";
+import {
+  LoginComponent,
+  CategoriesComponent,
+  ConfirmDialogComponent,
+  CreateDialogComponent
+} from "./components";
 import {AuthGuard} from "./guards/auth.guard";
 
 @NgModule({
@@ -35,7 +41,9 @@ import {AuthGuard} from "./guards/auth.guard";
     PublicComponent,
     SecuredComponent,
     LoginComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ConfirmDialogComponent,
+    CreateDialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -60,6 +68,7 @@ import {AuthGuard} from "./guards/auth.guard";
     MatListModule,
     MatTableModule,
     MatSortModule,
+    MatDialogModule,
 
     LayoutModule
   ],
@@ -70,6 +79,7 @@ import {AuthGuard} from "./guards/auth.guard";
     CategoryService,
     AuthGuard
   ],
+  entryComponents: [ConfirmDialogComponent, CreateDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
