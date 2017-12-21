@@ -26,9 +26,7 @@ export class CategoryService {
   }
 
   update(entity: ICategoryModel) {
-    let params = new HttpParams();
-    params = Object.entries(entity).reduce((p, [key, value]) => p.set(key, value), params);
-    return this.http.put<IResponse<null>>(this.route, params);
+    return this.http.put<IResponse<null>>(this.route, entity);
   }
 
   delete(id: string) {

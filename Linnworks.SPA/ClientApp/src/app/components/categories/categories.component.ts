@@ -5,6 +5,7 @@ import {MatDialog, MatSort, MatTableDataSource} from "@angular/material";
 import {ConfirmDialogComponent} from "./delete-dialog/delete-dialog.component";
 import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
 import "rxjs/add/operator/finally";
+import {EditDialogComponent} from "./edit-dialog/edit-dialog.component";
 
 @Component({
   templateUrl: './categories.component.html',
@@ -60,7 +61,15 @@ export class CategoriesComponent implements OnInit {
   }
 
   onEditClick(id: string) {
-    debugger;
+    let category = this.categories.find(item => item.categoryId == id);
+    let ref = this.deleteDialog.open(EditDialogComponent, {
+      width: '300px',
+      data: category
+    });
+    ref.afterClosed().subscribe(res => {
+      if (!res) return;
+      this.loadRecords();
+    });
   }
 
   onDeleteClick(id: string) {

@@ -90,7 +90,7 @@ GROUP BY P.CategoryId";
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Category category)
+        public async Task<IActionResult> Put([FromBody]Category category)
         {
             try
             {

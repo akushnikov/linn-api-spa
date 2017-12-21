@@ -31,7 +31,8 @@ import {
   LoginComponent,
   CategoriesComponent,
   ConfirmDialogComponent,
-  CreateDialogComponent
+  CreateDialogComponent,
+  EditDialogComponent
 } from "./components";
 import {AuthGuard} from "./guards/auth.guard";
 
@@ -43,7 +44,8 @@ import {AuthGuard} from "./guards/auth.guard";
     LoginComponent,
     CategoriesComponent,
     ConfirmDialogComponent,
-    CreateDialogComponent
+    CreateDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -79,7 +81,7 @@ import {AuthGuard} from "./guards/auth.guard";
     CategoryService,
     AuthGuard
   ],
-  entryComponents: [ConfirmDialogComponent, CreateDialogComponent],
+  entryComponents: [ConfirmDialogComponent, CreateDialogComponent, EditDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
