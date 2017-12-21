@@ -1,9 +1,35 @@
-.mat-column {
-  &-actions {
-    flex: 0 0 100px;
+.category-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+
+  .category-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+
+    .mat-form-field {
+      font-size: 14px;
+      width: 100%;
+    }
   }
 
-  &-count {
-    flex: 0 0 80px;
+  .mat-column {
+    &-name {
+      flex-grow: 20;
+    }
+
+    &-count {
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex: 3rem;
+    }
+
+    &-actions {
+      flex-grow: 2;
+      flex-shrink: 0;
+      flex: 5rem;
+    }
   }
 }
+
+

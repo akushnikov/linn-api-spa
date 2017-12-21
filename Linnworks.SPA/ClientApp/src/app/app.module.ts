@@ -15,7 +15,8 @@ import {
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatListModule,
-  MatTableModule
+  MatTableModule,
+  MatSortModule
 } from '@angular/material';
 
 import {LayoutModule} from '@angular/cdk/layout';
@@ -58,6 +59,7 @@ import {AuthGuard} from "./guards/auth.guard";
     MatSidenavModule,
     MatListModule,
     MatTableModule,
+    MatSortModule,
 
     LayoutModule
   ],

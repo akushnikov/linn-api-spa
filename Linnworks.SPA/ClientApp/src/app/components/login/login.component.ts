@@ -28,11 +28,11 @@ export class LoginComponent {
     this.loading = true;
     this.authService.validate(this.token.value)
       .subscribe(ok => {
-        this.loading = false;
         this.router.navigate(['categories']);
       }, err => {
-        this.loading = false;
         this.token.setErrors({"token": true});
+      }, () => {
+        this.loading = false;
       });
   }
 }
