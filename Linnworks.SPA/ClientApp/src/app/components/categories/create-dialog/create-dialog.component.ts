@@ -25,9 +25,9 @@ export class CreateDialogComponent {
         : '';
   }
 
-  create() {
+  create(value) {
     this.loading = true;
-    this.categoryService.create(this.categoryName.value)
+    this.categoryService.create(value)
       .finally(() => this.loading = false)
       .subscribe(ok => {
         this.dialogRef.close(ok.data);
