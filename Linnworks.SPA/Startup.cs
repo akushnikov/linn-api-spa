@@ -1,6 +1,6 @@
 using Linnworks.API.Base;
+using Linnworks.Client.Core;
 using Linnworks.SPA.Authentication;
-using Linnworks.SPA.Factories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

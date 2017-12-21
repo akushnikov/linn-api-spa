@@ -1,11 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net.Http;
-using Linnworks.Client.Core;
 using Linnworks.Client.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 
-namespace Linnworks.SPA.Factories
+namespace Linnworks.Client.Core
 {
     public class ApiClientFactory
     {
@@ -20,6 +20,11 @@ namespace Linnworks.SPA.Factories
         {
             var token = Accessor.HttpContext.Request.Headers[HeaderNames.Authorization].Single();
             return new LinnworksClient(new HttpClient(), token);
+        }
+
+        public IApiClient GetApiClient(Guid token)
+        {
+            return new LinnworksClient(new HttpClient(), token.ToString());
         }
     }
 }
