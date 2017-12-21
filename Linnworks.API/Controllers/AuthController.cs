@@ -18,7 +18,7 @@ namespace Linnworks.API.Controllers
         private ApiClientFactory Factory { get; }
 
         [HttpGet("validate/{token}"), AllowAnonymous]
-        public IActionResult Validate(Guid token)
+        public IActionResult Validate(string token)
         {
             var client = Factory.GetApiClient(token);
             var number = client.GetNewItemNumber();

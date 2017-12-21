@@ -13,10 +13,10 @@ export class AuthService {
   }
 
   get token(): string {
-    return localStorage.getItem(DB_TOKEN_KEY);
+    return sessionStorage.getItem(DB_TOKEN_KEY);
   }
   set token(value: string){
-    localStorage.setItem(DB_TOKEN_KEY, value);
+    sessionStorage.setItem(DB_TOKEN_KEY, value);
   }
 
   get isAuthenticated() {
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(DB_TOKEN_KEY);
+    sessionStorage.removeItem(DB_TOKEN_KEY);
   }
 
 }

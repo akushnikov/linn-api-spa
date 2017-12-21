@@ -22,9 +22,9 @@ namespace Linnworks.Client.Core
             return new LinnworksClient(new HttpClient(), token);
         }
 
-        public IApiClient GetApiClient(Guid token)
+        public IApiClient GetApiClient(string token)
         {
-            return new LinnworksClient(new HttpClient(), token.ToString());
+            return new LinnworksClient(new HttpClient(), token);
         }
     }
 }

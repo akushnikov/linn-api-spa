@@ -5,8 +5,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-
-
 import {
   MatToolbarModule,
   MatIconModule,
@@ -14,15 +12,20 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatListModule,
+  MatTableModule
 } from '@angular/material';
 
+import {LayoutModule} from '@angular/cdk/layout';
+
 import {AppComponent} from './app.component';
-import {AuthService} from "./services";
+import {AuthService, CategoryService} from "./services";
 
 import {PublicComponent, SecuredComponent} from "./components/layout";
 import {AuthInterceptor, NoCacheInterceptor} from "./interceptors";
-import {LoginComponent} from "./components";
+import {LoginComponent, CategoriesComponent} from "./components";
 import {AuthGuard} from "./guards/auth.guard";
 
 @NgModule({
@@ -30,7 +33,8 @@ import {AuthGuard} from "./guards/auth.guard";
     AppComponent,
     PublicComponent,
     SecuredComponent,
-    LoginComponent
+    LoginComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -39,9 +43,9 @@ import {AuthGuard} from "./guards/auth.guard";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      // { path: '', component: HomeComponent, pathMatch: 'full' },
-       { path: 'login', component: LoginComponent },
-      // { path: 'fetch-data', component: FetchDataComponent },
+      {path: '', redirectTo: '/categories', pathMatch: 'full'},
+      {path: 'login', component: LoginComponent},
+      {path: 'categories', canActivate: [AuthGuard], component: CategoriesComponent},
     ]),
 
     MatToolbarModule,
@@ -50,12 +54,18 @@ import {AuthGuard} from "./guards/auth.guard";
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+
+    LayoutModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: NoCacheInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: NoCacheInterceptor, multi: true},
     AuthService,
+    CategoryService,
     AuthGuard
   ],
   bootstrap: [AppComponent]
